@@ -11,5 +11,17 @@ const notion = new Client({
     });
 
     const allPosts = posts.results;
-    return allPosts;
+    return allPosts.map((post)=>{
+      return getPageMetaData(post);
+    });
+  };
+
+  const getPageMetaData=(post:any)=>{
+    return{
+      id: post.id,
+      title: post.properties.名前.title[0].plain_text,
+      description: post.properties.Description.rich_text[0].plain_text,
+      date: post.properties.Date.date.start,
+      slug: post.properties.Slug.rich_text[0].plain_text,
+    }
   };
