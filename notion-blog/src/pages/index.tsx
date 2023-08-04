@@ -1,6 +1,7 @@
 import { getAllPosts } from "../../lib/notionAPI";
 import Head from "next/head";
 import SinglePost from "../../components/Post/SinglePost"
+
 export const getStaticProps = async () => {
   const allPosts = await getAllPosts();
 
@@ -21,16 +22,16 @@ export default function Home({ allPosts }: any) {
       </Head>
 
       <main className="container w-full mt-16">
-        <h1 className="text-5xl font-medium text-center mg-16">Notion Blog🚀</h1>
+        <h1 className="text-5xl font-semibold text-center mg-16 mb-16">Notion Blog🚀</h1>
       </main>
       {
         allPosts.map((post: any) => (
           <div className="mx-4">
             <SinglePost
               title={post.title}
-              desciption={post.desciption}
+              description={post.description}
               date={post.date}
-              tag={post.tags}
+              tags={post.tags}
               slug={post.slug}
             />
           </div>
