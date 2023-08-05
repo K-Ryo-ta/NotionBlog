@@ -24,7 +24,7 @@ const SinglePost = (props: Props) => {
                         {date}
                     </div>
                     {tags.map((tag) => (
-                        <span className="text-gray-100 bg-gray-500 rounded-xl px-2 pb-1  mx-1 font-semibold">
+                        <span className="text-gray-100 bg-gray-500 rounded-xl px-2 pb-1  mr-3 font-semibold">
                             {tag}
                         </span>
                     ))}
