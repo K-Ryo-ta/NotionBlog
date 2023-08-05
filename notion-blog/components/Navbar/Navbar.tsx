@@ -10,16 +10,16 @@ const Navbar = () => {
                 <div>
                     <ul className="flex items-center text-sm py-4">
                         <li>
-                            <Link href="/" className="block px-4 py-2 hover:text-sky-900 transition-all duration-300 font-semibold">Home</Link>
+                            <Link href="/" className="block px-2 py-2 hover:text-orange-600 transition-all duration-300 font-semibold bg-gray-300 rounded-md shadow-2xl hover:shadow-none hover:translate-y-0.5 mx-1">Home</Link>
                         </li>
                         <li>
-                            <Link href="https://twitter.com/KR_programing" className="block px-4 py-2 hover:text-sky-900 transition-all duration-300 font-semibold">Twitter</Link>
+                            <Link href="https://twitter.com/KR_programing" className="block px-2 py-2 hover:text-sky-600 transition-all duration-300 font-semibold bg-gray-300 rounded-md shadow-2xl hover:shadow-none hover:translate-y-0.5 mx-1">Twitter</Link>
                         </li>
                         <li>
-                            <Link href="https://qiita.com/Ryota_programing" className="block px-4 py-2 hover:text-sky-900 transition-all duration-300 font-semibold">Qiita</Link>
+                            <Link href="https://qiita.com/Ryota_programing" className="block px-2 py-2 hover:text-green-600 transition-all duration-300 font-semibold bg-gray-300 rounded-md shadow-2xl hover:shadow-none hover:translate-y-0.5 mx-1">Qiita</Link>
                         </li>
                         <li>
-                            <Link href="https://github.com/K-Ryo-ta" className="block px-4 py-2 hover:text-sky-900 transition-all duration-300 font-semibold">GitHub</Link>
+                            <Link href="https://github.com/K-Ryo-ta" className="block px-2 py-2 hover:text-indigo-600 transition-all duration-300 font-semibold bg-gray-300 rounded-md shadow-2xl hover:shadow-none hover:translate-y-0.5 mx-1">GitHub</Link>
                         </li>
                     </ul>
                 </div>
