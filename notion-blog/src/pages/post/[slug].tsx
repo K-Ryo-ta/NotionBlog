@@ -66,7 +66,7 @@ const Post = ({ post }: any) => {
             </div>
 
             <Link href="/">
-                <span className="block px-2 py-2 hover:text-orange-600 transition-all duration-300 font-semibold bg-gray-300 rounded-md shadow-2xl hover:shadow-none hover:translate-y-0.5 mx-1 inline-block">
+                <span className="block px-2 py-2 hover:text-orange-600 transition-all duration-300 font-semibold bg-gray-300 rounded-md shadow-2xl hover:shadow-none hover:translate-y-0.5  inline-block">
                     ホームに戻る
                 </span>
             </Link>
@@ -74,5 +74,7 @@ const Post = ({ post }: any) => {
         </section>
     );
 };
+
+
 
 export default Post;
