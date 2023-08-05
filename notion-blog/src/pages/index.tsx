@@ -14,7 +14,6 @@ export const getStaticProps = async () => {
 }
 
 export default function Home({ allPosts }: any) {
-  console.log(allPosts);
   return (
     <div className="container h-full mx-auto font-mono">
       <Head>
