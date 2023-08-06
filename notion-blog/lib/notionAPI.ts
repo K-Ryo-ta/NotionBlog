@@ -1,5 +1,6 @@
 import { Client } from "@notionhq/client";
 import {NotionToMarkdown} from "notion-to-md";
+import { NUMBER_OF_POST_PER_RAGE } from "../constants/constants";
 
 const notion = new Client({
     auth: process.env.NOTION_TOKEN,
@@ -54,7 +55,6 @@ const notion = new Client({
     const metadata = getPageMetaData(page);
     const mdblocks = await n2m.pageToMarkdown(page.id);
     const mdString = n2m.toMarkdownString(mdblocks);
-    console.log(mdString);
     return{
       metadata,
       markdown:mdString,
@@ -66,3 +66,17 @@ const notion = new Client({
     const fourPosts = allPosts.slice(0,page_size);
     return fourPosts;
   };
+
+  export const getPostByPage = async(page:number) => {
+    const allPosts = await getAllPosts();
+    const startIndex = (page - 1) * NUMBER_OF_POST_PER_RAGE;
+    const endIndex = startIndex + NUMBER_OF_POST_PER_RAGE;
+    return allPosts.slice(startIndex,endIndex);
+  }
+
+  export const getNumberOfPages = async () => {
+    const allPosts = await getAllPosts();
+    return(
+      Math.floor(allPosts.length/NUMBER_OF_POST_PER_RAGE) + (allPosts.length % NUMBER_OF_POST_PER_RAGE > 0 ? 1 : 0)
+    )
+  }
