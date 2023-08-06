@@ -60,3 +60,9 @@ const notion = new Client({
       markdown:mdString,
     }
   };
+
+  export const getPostsFourTopPage = async (page_size:number)  =>{
+    const allPosts = await getAllPosts();
+    const fourPosts = allPosts.slice(0,page_size);
+    return fourPosts;
+  };
