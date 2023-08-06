@@ -2,6 +2,7 @@ import { getAllPosts, getPostsFourTopPage } from "../../lib/notionAPI";
 import Head from "next/head";
 import SinglePost from "../../components/Post/SinglePost"
 import { GetStaticProps } from "next";
+import Link from "next/link";
 
 export const getStaticProps: GetStaticProps = async () => {
   const fourPosts = await getPostsFourTopPage(4);
@@ -37,6 +38,11 @@ export default function Home({ fourPosts }: any) {
           </div>
         ))
       }
+      <Link href="/post/page/1" className="block lg:w-1/2 justify-end mx-auto text-right">
+        <p className="inline-block  mb-6  rounded-md p-2 shadow-2xl hover:shadow-none hover:translate-y-2 transition-all duration-300 text-gray-100 bg-sky-700 font-semibold ">
+          ...もっと見る
+        </p>
+      </Link>
     </div>
   )
 }
