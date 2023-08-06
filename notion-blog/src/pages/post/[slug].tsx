@@ -70,7 +70,9 @@ const Post = ({ post }: any) => {
                     ホームに戻る
                 </span>
             </Link>
-
+            <div>
+                <br />
+            </div>
         </section>
     );
 };
