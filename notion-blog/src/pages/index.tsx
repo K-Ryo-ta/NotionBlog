@@ -34,6 +34,7 @@ export default function Home({ fourPosts }: any) {
               date={post.date}
               tags={post.tags}
               slug={post.slug}
+              isPagenationPage={false}
             />
           </div>
         ))
