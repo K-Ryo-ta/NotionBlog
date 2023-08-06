@@ -1,6 +1,7 @@
 import { getAllPosts, getPostsFourTopPage, getPostByPage, getNumberOfPages } from "../../../../lib/notionAPI";
 import Head from "next/head";
-import SinglePost from "../../../../components/Post/SinglePost"
+import SinglePost from "../../../../components/Post/SinglePost";
+import Pagenation from "../../../../components/Pagenation/Pagenation";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 
@@ -54,6 +55,7 @@ const BlogPageList = ({ postsByPage }: any) => {
                         ))
                     }
                 </section>
+                <Pagenation />
             </main>
         </div>
     )
