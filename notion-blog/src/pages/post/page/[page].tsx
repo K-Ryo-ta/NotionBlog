@@ -20,16 +20,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
     const currentPage = context.params?.page;
     const postsByPage = await getPostByPage(parseInt(currentPage!.toString(), 10));
-
+    const numberOfPage = await getNumberOfPages();
     return {
         props: {
             postsByPage: postsByPage,
+            numberOfPage: numberOfPage,
         },
         revalidate: 60,
     }
 }
 
-const BlogPageList = ({ postsByPage }: any) => {
+const BlogPageList = ({ postsByPage }: any, { numberOfPage }: any) => {
     return (
         <div className="container h-full mx-auto font-mono">
             <Head>
@@ -55,7 +56,7 @@ const BlogPageList = ({ postsByPage }: any) => {
                         ))
                     }
                 </section>
-                <Pagenation />
+                <Pagenation numberOfPage={numberOfPage} />
             </main>
         </div>
     )

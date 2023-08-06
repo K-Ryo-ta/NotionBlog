@@ -77,6 +77,6 @@ const notion = new Client({
   export const getNumberOfPages = async () => {
     const allPosts = await getAllPosts();
     return(
-      Math.floor(allPosts.length/NUMBER_OF_POST_PER_RAGE) +(allPosts.length % NUMBER_OF_POST_PER_RAGE) > 0 ? 1 : 0
+      Math.floor(allPosts.length/NUMBER_OF_POST_PER_RAGE) + (allPosts.length % NUMBER_OF_POST_PER_RAGE > 0 ? 1 : 0)
     )
   }
