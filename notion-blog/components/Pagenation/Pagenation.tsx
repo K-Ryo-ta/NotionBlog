@@ -11,7 +11,6 @@ const Pagenation = (props: Props) => {
     for (let i = 1; i <= numberOfPage; i++) {
         pages.push(i);
     }
-    console.log(pages);
     return (
         <section className="mb-8 mx-auto lg:w-1/2 rounded-md p-5">
             <ul className="flex items-center justify-center gap-4">
