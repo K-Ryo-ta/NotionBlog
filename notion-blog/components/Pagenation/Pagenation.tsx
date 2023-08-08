@@ -1,12 +1,14 @@
 import React from "react";
 import Link from "next/link";
+import { getPageLink } from "../../lib/blog-helpr";
 
 interface Props {
     numberOfPage: number,
+    tag: string,
 }
 
 const Pagenation = (props: Props) => {
-    const { numberOfPage } = props;
+    const { numberOfPage, tag } = props;
     let pages: number[] = [];
     for (let i = 1; i <= numberOfPage; i++) {
         pages.push(i);
@@ -16,7 +18,7 @@ const Pagenation = (props: Props) => {
             <ul className="flex items-center justify-center gap-4">
                 {pages.map((page) => (
                     <li className="bg-sky-900 w-6 h-8 rounded-lg relative" key={page}>
-                        <Link href={`${page}`} className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-gray-100">{page}</Link>
+                        <Link href={getPageLink(tag, page)} className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 text-gray-100">{page}</Link>
                     </li>))}
             </ul>
         </section>
