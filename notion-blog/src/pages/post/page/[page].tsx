@@ -1,8 +1,9 @@
-import { getAllPosts, getPostsFourTopPage, getPostByPage, getNumberOfPages } from "../../../../lib/notionAPI";
+import { getAllPosts, getPostsFourTopPage, getPostByPage, getNumberOfPages, getAllTags } from "../../../../lib/notionAPI";
 import Head from "next/head";
 import SinglePost from "../../../../components/Post/SinglePost";
 import Pagenation from "../../../../components/Pagenation/Pagenation";
 import { GetStaticPaths, GetStaticProps } from "next";
+import Tag from "../../../../components/Tag/Tag";
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -21,16 +22,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const currentPage = context.params?.page;
     const postsByPage = await getPostByPage(parseInt(currentPage!.toString(), 10));
     const numberOfPage = await getNumberOfPages();
+    const allTags = await getAllTags();
     return {
         props: {
             postsByPage: postsByPage,
             numberOfPage: numberOfPage,
+            allTags: allTags,
         },
         revalidate: 60,
     }
 }
 
-const BlogPageList = ({ postsByPage, numberOfPage }: any) => {
+const BlogPageList = ({ postsByPage, numberOfPage, allTags }: any) => {
     return (
         <div className="container h-full mx-auto font-mono">
             <Head>
@@ -57,6 +60,7 @@ const BlogPageList = ({ postsByPage, numberOfPage }: any) => {
                     }
                 </section>
                 <Pagenation numberOfPage={numberOfPage} tag={""} />
+                <Tag tags={allTags} />
             </main>
         </div>
     )

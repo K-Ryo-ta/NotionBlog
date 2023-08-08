@@ -3,6 +3,7 @@ import Head from "next/head";
 import SinglePost from "../../../../../../components/Post/SinglePost";
 import Pagenation from "../../../../../../components/Pagenation/Pagenation";
 import { GetStaticPaths, GetStaticProps } from "next";
+import Tag from "../../../../../../components/Tag/Tag";
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -32,17 +33,19 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const posts = await getPostsByTagAndPage(currentTagName!, parseInt(currentPage!.toString(), 10));
 
     const numberOfPagesByTag = await getNumberOfPagesByTag(currentTagName!);
+    const allTags = await getAllTags();
     return {
         props: {
             posts: posts,
             numberOfPagesByTag: numberOfPagesByTag,
             currentTagName: currentTagName,
+            allTags: allTags,
         },
         revalidate: 60,
     }
 }
 
-const BlogTagPageList = ({ posts, numberOfPagesByTag, currentTagName }: any) => {
+const BlogTagPageList = ({ posts, numberOfPagesByTag, currentTagName, allTags }: any) => {
     return (
         <div className="container h-full mx-auto font-mono">
             <Head>
@@ -69,6 +72,7 @@ const BlogTagPageList = ({ posts, numberOfPagesByTag, currentTagName }: any) => 
                     }
                 </section>
                 <Pagenation numberOfPage={numberOfPagesByTag} tag={currentTagName} />
+                <Tag tags={allTags} />
             </main>
         </div>
     )
