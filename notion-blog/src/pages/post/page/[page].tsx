@@ -56,7 +56,7 @@ const BlogPageList = ({ postsByPage, numberOfPage }: any) => {
                         ))
                     }
                 </section>
-                <Pagenation numberOfPage={numberOfPage} />
+                <Pagenation numberOfPage={numberOfPage} tag={""} />
             </main>
         </div>
     )
