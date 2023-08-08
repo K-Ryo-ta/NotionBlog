@@ -27,7 +27,7 @@ export default function Home({ fourPosts }: any) {
       </main>
       {
         fourPosts.map((post: any) => (
-          <div className="mx-4">
+          <div className="mx-4" key={post.id}>
             <SinglePost
               title={post.title}
               description={post.description}
