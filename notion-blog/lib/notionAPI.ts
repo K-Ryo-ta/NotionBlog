@@ -80,3 +80,28 @@ const notion = new Client({
       Math.floor(allPosts.length/NUMBER_OF_POST_PER_RAGE) + (allPosts.length % NUMBER_OF_POST_PER_RAGE > 0 ? 1 : 0)
     )
   }
+
+  export const getPostsByTagAndPage= async(tagName:string,page:number)=>{
+    const allPosts = await getAllPosts();
+    const posts =  allPosts.filter((post)=>post.tags.find((tag:string) => tag == tagName));
+
+    const startIndex = (page - 1) * NUMBER_OF_POST_PER_RAGE;
+    const endIndex = startIndex + NUMBER_OF_POST_PER_RAGE;
+    return posts.slice(startIndex,endIndex);
+  }
+
+  export const getNumberOfPagesByTag = async (tagName:string) =>{
+    const allPosts = await getAllPosts();
+    const posts =  allPosts.filter((post)=>post.tags.find((tag:string) => tag == tagName));
+    return(
+      Math.floor(posts.length/NUMBER_OF_POST_PER_RAGE) + (posts.length % NUMBER_OF_POST_PER_RAGE > 0 ? 1 : 0)
+    )
+  }
+
+  export const getAllTags = async ()=>{
+    const allPosts = await getAllPosts();
+    const allTagsDuplicationList =  allPosts.flatMap((post)=>post.tags);
+    const set = new Set(allTagsDuplicationList);
+    const allTagsList = Array.from(set);
+    return allTagsList;
+  }
