@@ -14,7 +14,7 @@ export const getStaticProps: GetStaticProps = async () => {
       fourPosts: fourPosts,
       allTags: allTags,
     },
-    revalidate: 60,
+    revalidate: 10,
   }
 }
 
