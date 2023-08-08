@@ -22,15 +22,18 @@ const SinglePost = (props: Props) => {
                                 {title}
                             </Link>
                         </h2>
-                        <div className="text-gray-100">
+                        <div className="text-gray-400">
                             {date}
                         </div>
-                        {tags.map((tag: string, index: number) => (
-                            <span className="text-gray-100 bg-gray-500 rounded-xl px-2 pb-1  mr-3 font-semibold" key={index}>
-                                {tag}
-                            </span>
-                        ))}
-
+                        <div className="flex flex-wrap">
+                            {tags.map((tag: string, index: number) => (
+                                <Link href={`/post/tag/${tag}/page/1`}>
+                                    <span className="text-gray-100 bg-gray-500 rounded-xl px-2 pb-1 mb-1 mr-3 font-semibold hover:text-blue-600 transition-all duration-300" key={index}>
+                                        {tag}
+                                    </span>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                     <p className="text-gray-100">
                         {description}
@@ -44,15 +47,18 @@ const SinglePost = (props: Props) => {
                                 {title}
                             </Link>
                         </h2>
-                        <div className="text-gray-100">
+                        <div className="text-gray-400">
                             {date}
                         </div>
-                        {tags.map((tag: string, index: number) => (
-                            <span className="text-gray-100 bg-gray-500 rounded-xl px-2 pb-1  mr-3 font-semibold" key={index}>
-                                {tag}
-                            </span>
-                        ))}
-
+                        <div className="flex flex-wrap">
+                            {tags.map((tag: string, index: number) => (
+                                <Link href={`/post/tag/${tag}/page/1`}>
+                                    <span className="text-gray-100 bg-gray-500 rounded-xl px-2 pb-1 mb-1 mr-3 font-semibold hover:text-blue-400 transition-all duration-300" key={index}>
+                                        {tag}
+                                    </span>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                     <p className="text-gray-100">
                         {description}
