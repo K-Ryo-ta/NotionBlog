@@ -1,4 +1,4 @@
-import { getAllPosts, getPostsFourTopPage, getPostByPage, getNumberOfPages, getPostsByTagAndPage, getNumberOfPagesByTag, getAllTags } from "../../../../../../lib/notionAPI";
+import { getAllPosts, getPostsFourTopPage, getPostByPage, getNumberOfPages, getPostsByTagAndPage, getNumberOfPagesByTag, getAllTags, } from "../../../../../../lib/notionAPI";
 import Head from "next/head";
 import SinglePost from "../../../../../../components/Post/SinglePost";
 import Pagenation from "../../../../../../components/Pagenation/Pagenation";
@@ -7,10 +7,10 @@ import { GetStaticPaths, GetStaticProps } from "next";
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const allTags = await getAllTags();
-    let params = [];
+    let params: any[] = [];
 
     await Promise.all(
-        allTags.map((tag) => {
+        allTags.map((tag: string) => {
             return getNumberOfPagesByTag(tag).then((numberOfPageByTag: number) => {
                 for (let i = 1; i <= numberOfPageByTag; i++) {
                     params.push({ params: { tag: tag, page: i.toString() } })
@@ -21,14 +21,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
     return {
-        paths: [
-            {
-                params: {
-                    tag: 'TypeScript',
-                    page: '1',
-                },
-            },
-        ],
+        paths: params,
         fallback: "blocking",
     }
 }
@@ -37,16 +30,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const currentPage = context.params?.page?.toString();
     const currentTagName = context.params?.tag?.toString();
     const posts = await getPostsByTagAndPage(currentTagName!, parseInt(currentPage!.toString(), 10));
+
+    const numberOfPagesByTag = await getNumberOfPagesByTag(currentTagName!);
     return {
         props: {
             posts: posts,
-
+            numberOfPagesByTag: numberOfPagesByTag,
         },
         revalidate: 60,
     }
 }
 
-const BlogTagPageList = ({ posts, numberOfPage }: any) => {
+const BlogTagPageList = ({ posts, numberOfPagesByTag }: any) => {
     return (
         <div className="container h-full mx-auto font-mono">
             <Head>
@@ -72,7 +67,7 @@ const BlogTagPageList = ({ posts, numberOfPage }: any) => {
                         ))
                     }
                 </section>
-                <Pagenation numberOfPage={numberOfPage} />
+                <Pagenation numberOfPage={numberOfPagesByTag} />
             </main>
         </div>
     )
